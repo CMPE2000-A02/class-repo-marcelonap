@@ -1,3 +1,4 @@
+using GDIDrawer;
 namespace GithubExample
 {
     public partial class Form1 : Form
@@ -5,8 +6,9 @@ namespace GithubExample
         public Form1()
         {
             InitializeComponent();
-            //Some work done
-            // Some more work
+            // Instance is our Object of the CDrawer CLASS || Class != Object
+            CDrawer Instance = new CDrawer();
+        
         }
     }
 }

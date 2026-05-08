@@ -33,7 +33,7 @@
       this._btnEngage = new System.Windows.Forms.Button();
       this._btnThread = new System.Windows.Forms.Button();
       this.UI_TextBox_1 = new System.Windows.Forms.TextBox();
-      this.UI_ApplyButton = new System.Windows.Forms.Button();
+      this.UI_BirdButton = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // UI_Tim_Main
@@ -66,21 +66,22 @@
       this.UI_TextBox_1.Size = new System.Drawing.Size(100, 20);
       this.UI_TextBox_1.TabIndex = 2;
       // 
-      // UI_ApplyButton
+      // UI_BirdButton
       // 
-      this.UI_ApplyButton.Location = new System.Drawing.Point(164, 167);
-      this.UI_ApplyButton.Name = "UI_ApplyButton";
-      this.UI_ApplyButton.Size = new System.Drawing.Size(75, 23);
-      this.UI_ApplyButton.TabIndex = 3;
-      this.UI_ApplyButton.Text = "Apply";
-      this.UI_ApplyButton.UseVisualStyleBackColor = true;
+      this.UI_BirdButton.Location = new System.Drawing.Point(164, 167);
+      this.UI_BirdButton.Name = "UI_BirdButton";
+      this.UI_BirdButton.Size = new System.Drawing.Size(75, 23);
+      this.UI_BirdButton.TabIndex = 3;
+      this.UI_BirdButton.Text = "Display Bird Info";
+      this.UI_BirdButton.UseVisualStyleBackColor = true;
+      this.UI_BirdButton.Click += new System.EventHandler(this.UI_ApplyButton_Click);
       // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(398, 242);
-      this.Controls.Add(this.UI_ApplyButton);
+      this.Controls.Add(this.UI_BirdButton);
       this.Controls.Add(this.UI_TextBox_1);
       this.Controls.Add(this._btnThread);
       this.Controls.Add(this._btnEngage);
@@ -97,7 +98,7 @@
     private System.Windows.Forms.Button _btnEngage;
     private System.Windows.Forms.Button _btnThread;
         private System.Windows.Forms.TextBox UI_TextBox_1;
-    private System.Windows.Forms.Button UI_ApplyButton;
+    private System.Windows.Forms.Button UI_BirdButton;
   }
 }
 

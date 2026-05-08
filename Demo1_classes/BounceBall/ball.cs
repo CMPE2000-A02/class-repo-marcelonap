@@ -41,19 +41,7 @@ namespace BounceBall
   // ///////////////////////////////////////////////////////////////////////
   class ball
   {
-    // NOTE: the order of items found in a class should be:
-    // delegate type definitions
-    // delegates
-    // events
-    // constant/readonly fields
-    // static fields - inline or prior    
-    // static properties
-    // static methods
-    // non-static fields/properties - inline or prior     
-    // non-static construction/management
-    // non-static events
-    // non-static helper methods
-
+    
     // ball radius, a single change here will alter all related behaviours
     public const int ciRadius = 25;
 

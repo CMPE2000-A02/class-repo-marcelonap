@@ -29,6 +29,8 @@ namespace BounceBall
     // active balls in play (NOTE: All fields are commented)
     private List<ball> _balls = new List<ball>();
 
+    Bird bird = new Bird(name: "Joanne", hasBeak: true, color: Color.Blue);
+
     private int _nWidth = 0; // width in pixels for CDrawer
     // thread run flag, no marshalling required, only set in main thread
     private bool _running = false;
@@ -44,7 +46,7 @@ namespace BounceBall
       // Event Subscriptions here
       _btnEngage.Click += EngageFireNow;
       _btnThread.Click += _btnThread_Click;
-
+      UI_BirdButton.Click += UI_BirdButton_Click;
       // start with a single ball, centered in the drawer
       //  this should cue the user that clicking or something might add more...
 
@@ -52,6 +54,21 @@ namespace BounceBall
       PointF center = new PointF(ball._drawer.ScaledWidth / 2, ball._drawer.ScaledHeight / 2);
       ball firstBall = new ball(center);
       _balls.Add(firstBall);
+    }
+
+    private void UI_BirdButton_Click(object sender, EventArgs e)
+    {
+      WriteLine(bird);
+      bird.fly(distance: -5);
+      WriteLine(bird.displayDistanceTraveled());
+      if (bird.hasBeak)
+      {
+        WriteLine($"{bird.name} has a beak!!");
+      }
+      else
+      {
+        bird.hasBeak = true;
+      }
     }
 
     private void UI_TextBox_1_TextChanged(object sender, EventArgs e)
@@ -171,5 +188,10 @@ namespace BounceBall
       }
     }
     #endregion
+
+    private void UI_ApplyButton_Click(object sender, EventArgs e)
+    {
+
+    }
   }
 }

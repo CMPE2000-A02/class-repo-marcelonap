@@ -11,15 +11,28 @@ namespace BounceBall
   class Bird
   {
     #region members
-    private int _numOfWings;
+    private int _numOfWings = 2;
     private string _name;
     private int _numOfToes;
     private bool _hasBeak;
     private int _distanceTraveled; // in kM
     private Color _color;
+    private string _nationality;
     #endregion
 
     #region properties
+
+    public string nationality
+    {
+      get
+      {
+        return _nationality;
+      }
+      set
+      {
+        _nationality = value.Length > 0 ? value : "invalid nationality";
+      }
+    }
 
     public int distanceTraveled
     {
@@ -65,7 +78,7 @@ namespace BounceBall
       _color = color;
     }
 
-    public Bird(string name, bool hasBeak, Color color) : this(2, name, 3, hasBeak, 10, color)
+    public Bird(string name, bool hasBeak, Color color) : this(5, name, 3, hasBeak, 10, color)
     {
 
     }
@@ -82,7 +95,7 @@ namespace BounceBall
 
     public override string ToString()
     {
-      return $"Hi I am a bird named {this.name} I have {this._numOfWings} wings and my color is {this._color} ";
+      return $"Hi I am a bird named {this.name} I have {this._numOfWings} wings and my color is {this._color} \n {name} is from: {_nationality} ";
      // return base.ToString(); "base" still to come
     }
   }

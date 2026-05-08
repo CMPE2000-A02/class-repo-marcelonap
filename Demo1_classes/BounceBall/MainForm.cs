@@ -54,6 +54,7 @@ namespace BounceBall
       PointF center = new PointF(ball._drawer.ScaledWidth / 2, ball._drawer.ScaledHeight / 2);
       ball firstBall = new ball(center);
       _balls.Add(firstBall);
+      bird.nationality = "Brazil";
     }
 
     private void UI_BirdButton_Click(object sender, EventArgs e)

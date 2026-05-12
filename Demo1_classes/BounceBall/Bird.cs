@@ -17,22 +17,13 @@ namespace BounceBall
     private bool _hasBeak;
     private int _distanceTraveled; // in kM
     private Color _color;
-    private string _nationality;
     #endregion
 
     #region properties
 
-    public string nationality
-    {
-      get
-      {
-        return _nationality;
-      }
-      set
-      {
-        _nationality = value.Length > 0 ? value : "invalid nationality";
-      }
-    }
+    public int beakLength { get; private set; } //in cm
+
+    public string Nationality{ get; private set; }
 
     public int distanceTraveled
     {
@@ -76,6 +67,7 @@ namespace BounceBall
       this.hasBeak = hasBeak;
       _distanceTraveled = distanceTraveled;
       _color = color;
+      beakLength = 12;
     }
 
     public Bird(string name, bool hasBeak, Color color) : this(5, name, 3, hasBeak, 10, color)
@@ -93,9 +85,19 @@ namespace BounceBall
       return $"{name} has traveled {distanceTraveled} km!";
     }
 
+    public bool setNationality(string newNationality)
+    {
+      if(newNationality.Length > 0)
+      {
+        Nationality = newNationality;
+        return true;
+      }
+      return false;
+    }
+
     public override string ToString()
     {
-      return $"Hi I am a bird named {this.name} I have {this._numOfWings} wings and my color is {this._color} \n {name} is from: {_nationality} ";
+      return $"Hi I am a bird named {this.name} I have {this._numOfWings} wings and my color is {this._color} \n {name} is from: {Nationality} ";
      // return base.ToString(); "base" still to come
     }
   }

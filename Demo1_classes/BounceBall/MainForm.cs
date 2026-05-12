@@ -30,6 +30,7 @@ namespace BounceBall
     private List<ball> _balls = new List<ball>();
 
     Bird bird = new Bird(name: "Joanne", hasBeak: true, color: Color.Blue);
+    Bird bird1 = new Bird(name: "Rex", hasBeak: true, color: Color.Blue);
 
     private int _nWidth = 0; // width in pixels for CDrawer
     // thread run flag, no marshalling required, only set in main thread
@@ -54,7 +55,8 @@ namespace BounceBall
       PointF center = new PointF(ball._drawer.ScaledWidth / 2, ball._drawer.ScaledHeight / 2);
       ball firstBall = new ball(center);
       _balls.Add(firstBall);
-      bird.nationality = "Brazil";
+      if (bird.setNationality("Brazil"))
+        WriteLine($"Nationality succesfully set: {bird1.Nationality} ");
     }
 
     private void UI_BirdButton_Click(object sender, EventArgs e)
@@ -62,6 +64,9 @@ namespace BounceBall
       WriteLine(bird);
       bird.fly(distance: -5);
       WriteLine(bird.displayDistanceTraveled());
+      if (!bird.setNationality(""))
+        WriteLine("Nationality failed to be set");
+
       if (bird.hasBeak)
       {
         WriteLine($"{bird.name} has a beak!!");

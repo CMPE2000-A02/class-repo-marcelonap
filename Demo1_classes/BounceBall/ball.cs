@@ -39,7 +39,7 @@ namespace BounceBall
   // ball class - self moving and rendering 'ball', implements equals
   //  for 'overlap' equality behavior.
   // ///////////////////////////////////////////////////////////////////////
-  class ball
+  class ball // NOT CAPITALIZED B, BAD
   {
     
     // ball radius, a single change here will alter all related behaviours

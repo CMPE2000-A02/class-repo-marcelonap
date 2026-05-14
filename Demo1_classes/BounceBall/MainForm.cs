@@ -10,12 +10,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 using static System.Diagnostics.Trace; // Pull Trace static helpers local, ie. WriteLine()
@@ -59,6 +54,7 @@ namespace BounceBall
         WriteLine($"Nationality succesfully set: {bird1.Nationality} ");
     }
 
+
     private void UI_BirdButton_Click(object sender, EventArgs e)
     {
       WriteLine(bird);
@@ -75,6 +71,9 @@ namespace BounceBall
       {
         bird.hasBeak = true;
       }
+
+      if (Bird.HaveToPoop)
+        WriteLine("Poop");
     }
 
     private void UI_TextBox_1_TextChanged(object sender, EventArgs e)
@@ -195,9 +194,5 @@ namespace BounceBall
     }
     #endregion
 
-    private void UI_ApplyButton_Click(object sender, EventArgs e)
-    {
-
-    }
-  }
+   }
 }

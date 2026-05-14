@@ -74,7 +74,6 @@
       this.UI_BirdButton.TabIndex = 3;
       this.UI_BirdButton.Text = "Display Bird Info";
       this.UI_BirdButton.UseVisualStyleBackColor = true;
-      this.UI_BirdButton.Click += new System.EventHandler(this.UI_ApplyButton_Click);
       // 
       // MainForm
       // 

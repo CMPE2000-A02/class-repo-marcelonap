@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,10 @@ namespace BounceBall
 
     public string Nationality{ get; private set; }
 
+    public static bool HaveToPoop { get; set; }
+
+    public static bool CanFly { get; } = true;
+
     public int distanceTraveled
     {
       get
@@ -39,7 +44,6 @@ namespace BounceBall
     public string name
     {
       get
-        //
       {
         return _name;
       }
@@ -60,6 +64,11 @@ namespace BounceBall
     }
     #endregion
 
+    static Bird()
+    {
+      HaveToPoop = true;  
+    }
+    
     public Bird(int numOfWings, string name, int numOfToes, bool hasBeak, int distanceTraveled, Color color)
     {
       _numOfWings = numOfWings;
@@ -69,6 +78,8 @@ namespace BounceBall
       _distanceTraveled = distanceTraveled;
       _color = color;
       beakLength = 12;
+      if (Bird.CanFly)
+        distanceTraveled = 16;
     }
 
     public Bird(string name, bool hasBeak, Color color) : this(5, name, 3, hasBeak, 10, color)
@@ -79,6 +90,7 @@ namespace BounceBall
     public void fly(int distance)
     {
       distanceTraveled = distance;
+      CleanupPoop();
     }
 
     public string displayDistanceTraveled()
@@ -100,6 +112,12 @@ namespace BounceBall
     {
       return $"Hi I am a bird named {this.name} I have {this._numOfWings} wings and my color is {this._color} \n {name} is from: {Nationality} ";
      // return base.ToString(); "base" still to come
+    }
+
+    static void CleanupPoop()
+    {
+      HaveToPoop = false;
+      fly(1);
     }
   }
 }

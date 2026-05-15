@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 using static System.Diagnostics.Trace; // Pull Trace static helpers local, ie. WriteLine()
@@ -26,6 +27,7 @@ namespace BounceBall
 
     Bird bird = new Bird(name: "Joanne", hasBeak: true, color: Color.Blue);
     Bird bird1 = new Bird(name: "Rex", hasBeak: true, color: Color.Blue);
+    Bird bird2 = new Bird(name: "Rex", hasBeak: true, color: Color.Blue);
 
     private int _nWidth = 0; // width in pixels for CDrawer
     // thread run flag, no marshalling required, only set in main thread
@@ -52,6 +54,13 @@ namespace BounceBall
       _balls.Add(firstBall);
       if (bird.setNationality("Brazil"))
         WriteLine($"Nationality succesfully set: {bird1.Nationality} ");
+
+      WriteLine($"bird1 equals bird? : {bird.Equals(bird1)}");
+      WriteLine($"bird1 equals bird2? : {bird2.Equals(bird1)} Are they the same reference? {object.ReferenceEquals(bird2,bird1)}");
+      if (bird is IComparable)
+        WriteLine("Bird is Icomparable");
+      if (_balls.First() is IComparable)
+        WriteLine("Ball is Icomparable");
     }
 
 

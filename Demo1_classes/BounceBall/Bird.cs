@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BounceBall
 {
-  class Bird
+  class Bird : IComparable
   {
     #region members
     private int _numOfWings = 2;
@@ -86,6 +86,13 @@ namespace BounceBall
     {
 
     }
+
+    public int CompareTo(object other)
+    {
+      if (!(other is Bird otherBird)) throw new ArgumentException("Not a bird");
+
+      return otherBird.distanceTraveled.CompareTo(this.distanceTraveled);
+    }
    
     public void fly(int distance)
     {
@@ -114,10 +121,25 @@ namespace BounceBall
      // return base.ToString(); "base" still to come
     }
 
+    public override bool Equals(object obj)
+    {
+      if (!(obj is Bird otherBird)) return false;
+
+      bool result = this.name == otherBird.name && this.Nationality == otherBird.Nationality;
+
+      return result;
+    }
+
+    public override int GetHashCode()
+    {
+      return 1;
+    }
+
     static void CleanupPoop()
     {
       HaveToPoop = false;
-      fly(1);
     }
+
+
   }
 }

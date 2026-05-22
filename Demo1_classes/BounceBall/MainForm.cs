@@ -45,6 +45,8 @@ namespace BounceBall
       _btnEngage.Click += EngageFireNow;
       _btnThread.Click += _btnThread_Click;
       UI_BirdButton.Click += UI_BirdButton_Click;
+      SortButton.Click += SortButton_Click;
+
       // start with a single ball, centered in the drawer
       //  this should cue the user that clicking or something might add more...
 
@@ -63,6 +65,24 @@ namespace BounceBall
         WriteLine("Ball is Icomparable");
     }
 
+     private void SortButton_Click(object sender, EventArgs e)
+    {
+      Console.WriteLine("Starting to sort balls");
+
+      Console.WriteLine("Current Order:");
+      foreach(var ball in _balls)
+      {
+        Console.WriteLine($"| {ball} |");
+      }
+      _balls.Sort(); 
+
+      Console.WriteLine("Sorted order:");
+      foreach(var ball in _balls)
+      {
+        Console.WriteLine($"| {ball} |");
+      }
+
+    }
 
     private void UI_BirdButton_Click(object sender, EventArgs e)
     {

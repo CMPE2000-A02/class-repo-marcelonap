@@ -39,7 +39,7 @@ namespace BounceBall
   // ball class - self moving and rendering 'ball', implements equals
   //  for 'overlap' equality behavior.
   // ///////////////////////////////////////////////////////////////////////
-  class ball // NOT CAPITALIZED B, BAD
+  class ball : IComparable // NOT CAPITALIZED B, BAD
   {
     
     // ball radius, a single change here will alter all related behaviours
@@ -172,6 +172,31 @@ namespace BounceBall
         _dir.Y *= -1;
       }
     }
+
+
+    public override string ToString()
+    {
+      return $"X: {_pos.X} - Y: {_pos.Y}- SUM: {_pos.Y + _pos.X} - Color: {_color}";
+    }
+
+    public int CompareTo(object obj)
+    {
+     // if(obj == null) return -1 ; other if statement does both the null and type check
+      // We need to always check the type and if it is a valid object, not a null reference
+      if (!(obj is ball other)) throw new ArgumentException("Not a ball or null");
+      Console.WriteLine("@ball.CompareTo: Found valid ball"); // USe console to debug your code !!!!!
+      if((this._pos.X + this._pos.Y) > (other._pos.Y + other._pos.X) )
+      {
+        return 1;
+      }else if((this._pos.X + this._pos.Y) < (other._pos.Y + other._pos.X) )
+      {
+        return -1;
+      }else
+        return 0;
+    }
+
+
+
     #endregion
   }
 }

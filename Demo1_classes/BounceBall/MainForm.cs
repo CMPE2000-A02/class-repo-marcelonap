@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 using static System.Diagnostics.Trace; // Pull Trace static helpers local, ie. WriteLine()
@@ -26,6 +27,7 @@ namespace BounceBall
 
     Bird bird = new Bird(name: "Joanne", hasBeak: true, color: Color.Blue);
     Bird bird1 = new Bird(name: "Rex", hasBeak: true, color: Color.Blue);
+    Bird bird2 = new Bird(name: "Rex", hasBeak: true, color: Color.Blue);
 
     private int _nWidth = 0; // width in pixels for CDrawer
     // thread run flag, no marshalling required, only set in main thread
@@ -43,6 +45,8 @@ namespace BounceBall
       _btnEngage.Click += EngageFireNow;
       _btnThread.Click += _btnThread_Click;
       UI_BirdButton.Click += UI_BirdButton_Click;
+      SortButton.Click += SortButton_Click;
+
       // start with a single ball, centered in the drawer
       //  this should cue the user that clicking or something might add more...
 
@@ -52,8 +56,33 @@ namespace BounceBall
       _balls.Add(firstBall);
       if (bird.setNationality("Brazil"))
         WriteLine($"Nationality succesfully set: {bird1.Nationality} ");
+
+      WriteLine($"bird1 equals bird? : {bird.Equals(bird1)}");
+      WriteLine($"bird1 equals bird2? : {bird2.Equals(bird1)} Are they the same reference? {object.ReferenceEquals(bird2,bird1)}");
+      if (bird is IComparable)
+        WriteLine("Bird is Icomparable");
+      if (_balls.First() is IComparable)
+        WriteLine("Ball is Icomparable");
     }
 
+     private void SortButton_Click(object sender, EventArgs e)
+    {
+      Console.WriteLine("Starting to sort balls");
+
+      Console.WriteLine("Current Order:");
+      foreach(var ball in _balls)
+      {
+        Console.WriteLine($"| {ball} |");
+      }
+      _balls.Sort(); 
+
+      Console.WriteLine("Sorted order:");
+      foreach(var ball in _balls)
+      {
+        Console.WriteLine($"| {ball} |");
+      }
+
+    }
 
     private void UI_BirdButton_Click(object sender, EventArgs e)
     {

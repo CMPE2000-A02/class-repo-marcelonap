@@ -25,9 +25,10 @@ namespace ComparisonDemo
     {
       Random rand = new Random();
       int discards = 0;
-      for(int i = 0; i < 15; i++)
+      for(int i = 0; i < 20; i++)
       {
-        CNum current = new CNum(rand.Next(20));
+        int randInt = rand.Next(65,91);
+        CNum current = new CNum(randInt - rand.Next(0,30) ,((char)randInt).ToString());
         if (nums.Contains(current))
         {
           if (discards++ > maxDiscards)
@@ -48,20 +49,27 @@ namespace ComparisonDemo
       Console.WriteLine("Before sorting");
       foreach (CNum num in nums)
       {
-        Console.WriteLine($"CNum: {num.Data}");
+        Console.WriteLine($"CNum: {num}");
       }
       // Descending sort with Lambda
       nums.Sort((num1, num2) => -1 * num1.Data.CompareTo(num2.Data));
       Console.WriteLine("After sorting descending");
       foreach (CNum num in nums)
       {
-        Console.WriteLine($"CNum: {num.Data}");
+        Console.WriteLine($"CNum: {num}");
       }
       nums.Sort(CNum.AscendingComparison);
       Console.WriteLine("After sorting ascending");
       foreach (CNum num in nums)
       {
-        Console.WriteLine($"CNum: {num.Data}");
+        Console.WriteLine($"CNum: {num}");
+      }
+
+      nums.Sort(); // Sort numerically, within alphabetically. So alphabetic order first, then numeric order
+      Console.WriteLine("After sorting 2 tier (Number within Name)");
+      foreach (CNum num in nums)
+      {
+        Console.WriteLine($"CNum: {num}");
       }
 
     }

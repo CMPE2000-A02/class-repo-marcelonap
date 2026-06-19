@@ -19,6 +19,7 @@ namespace ComparisonDemo
       InitializeComponent();
       PopulateListOfNums();
       PrintAndSort();
+      CNum myCnum = new CNum(1.0f);
     }
 
     public void PopulateListOfNums()
@@ -40,6 +41,8 @@ namespace ComparisonDemo
           i--;
           continue;  
         }
+        if(i % 2 == 0)
+          current.OffsetData = true;
         nums.Add(current); 
       }
     }
@@ -59,6 +62,7 @@ namespace ComparisonDemo
         Console.WriteLine($"CNum: {num}");
       }
       nums.Sort(CNum.AscendingComparison);
+      nums.Sort(AscendingComparisonLoose);
       Console.WriteLine("After sorting ascending");
       foreach (CNum num in nums)
       {
@@ -72,12 +76,12 @@ namespace ComparisonDemo
         Console.WriteLine($"CNum: {num}");
       }
 
+
     }
 
     // Comparison satisfied by any method matching the signature
     internal int AscendingComparisonLoose(CNum num1, CNum num2)
     {
-
       return num1.Data.CompareTo(num2.Data);
     }
 

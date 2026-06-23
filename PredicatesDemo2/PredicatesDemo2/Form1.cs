@@ -15,6 +15,9 @@ namespace PredicatesDemo2
     List<NumBall> numBalls = new List<NumBall>();
     Queue<NumBall> qNumBalls = new Queue<NumBall>();
     Stack<NumBall> sNumBalls = new Stack<NumBall>();
+
+    Dictionary<string, NumBall> dict = new Dictionary<string, NumBall>();
+
     public Form1()
     {
       InitializeComponent();
@@ -31,6 +34,7 @@ namespace PredicatesDemo2
       Console.WriteLine($"Balls in list({numBalls.Count(delegate(NumBall ball) { return ball.color.Equals(Color.Blue); } )}): {numBalls}");
       Console.WriteLine($"Balls in list({numBalls.Count(ball => ball.color.Equals(Color.Green))}): {numBalls}");
       Console.WriteLine($"Balls in list({numBalls.Count(ball => ball.Num >= 77 && ball.Num <= 89)}): {numBalls}");
+      
 
 
       NumBall target = numBalls.Find(ball => ball.Num >= 77);
@@ -40,7 +44,7 @@ namespace PredicatesDemo2
       }
 
       int lastIndex = numBalls.IndexOf(numBalls.FindLast(ball => ball.color.Equals(Color.Red)));
-      if (lastIndex == -1) return;
+     // if (lastIndex == -1) return;
 
       Console.WriteLine($"Index of Q peek { qNumBalls.ToList().IndexOf(qNumBalls.Peek()) }");
       Console.WriteLine($"Index of S peek { sNumBalls.ToList().IndexOf(sNumBalls.Peek()) }");
@@ -48,9 +52,16 @@ namespace PredicatesDemo2
       Console.WriteLine($"Index of S peek { sNumBalls.Peek().Num }");
       Console.WriteLine($"Index of Q peek { qNumBalls.Peek().Num }");
       
-      Console.WriteLine(numBalls[lastIndex] + $" Index: {lastIndex}");
+      Console.WriteLine($"Balls in Dict:{dict.Count(kvp => kvp.Key.Contains("1"))}");
+      List<KeyValuePair<string, NumBall>> listkvp = dict.Where(kvp => kvp.Key.Contains("1")).ToList();      
+      foreach(KeyValuePair<string,NumBall> kvp in listkvp)
+      {
+        Console.WriteLine($"Key: {kvp.Key} value: {kvp.Value}");
+      }
 
+      Console.WriteLine($"Fetching ball 77: {dict["Ball #77"]}");
 
+    //  Console.WriteLine(numBalls[lastIndex] + $" Index: {lastIndex}");
     }
 
     public void PopulateList()
@@ -58,22 +69,22 @@ namespace PredicatesDemo2
       Console.WriteLine($"@PopulateList(): populating my list - current list: {numBalls.Count()}");
       for (int i = 0; i < 500; i++)
       {
+        NumBall ball = new NumBall(i);
+        dict.Add($"Ball #{i}", ball);
         numBalls.Add(new NumBall());
         qNumBalls.Enqueue(new NumBall(i));
         sNumBalls.Push(new NumBall(i));
       }
-      //sNumBalls.Pop();
-      //sNumBalls.Peek();
-      //qNumBalls.Peek();
-      //qNumBalls.Dequeue();
-      
+      sNumBalls.Pop();
+      sNumBalls.Peek();
+
+      qNumBalls.Peek();
+      qNumBalls.Dequeue();
+
       for (int i = 0; i < 7; i++)
       {
         numBalls.Add(new NumBall(Color.Green));
       }
-
-
-
     }
   }
 

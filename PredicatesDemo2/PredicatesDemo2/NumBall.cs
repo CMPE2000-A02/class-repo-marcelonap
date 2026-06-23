@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GDIDrawer;
+//using GDIDrawer;
 
 namespace PredicatesDemo2
 {
@@ -22,7 +22,7 @@ namespace PredicatesDemo2
       random = new Random();
     }
 
-    public NumBall() : this(RandColor.GetKnownColor(), random.Next(0, 101))
+    public NumBall() : this(Color.Blue, random.Next(0, 101))
     {
       Console.WriteLine("@NumBall(): Default constructor assigning random values");
     }
@@ -54,6 +54,11 @@ namespace PredicatesDemo2
       return $"Target: {this.color } - Num: {this.Num}";
     }
 
+    public override bool Equals(object obj)
+    {
+      if (!(obj is NumBall other)) return false;
+      return other.Num == Num && other.color == color;
+    }
 
   }
 }

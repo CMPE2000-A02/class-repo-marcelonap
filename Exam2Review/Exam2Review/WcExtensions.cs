@@ -12,5 +12,12 @@ namespace Exam2Review
     {
       return match.scoreA > match.scoreB;
     }
+
+    public static string Winner(this WCMatch match)
+    {
+      string result = "";
+      result = match.IsTeamAWinner() ? match.CountryA : match.CountryB;
+      return result;
+    }
   }
 }

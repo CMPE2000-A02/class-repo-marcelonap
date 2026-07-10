@@ -14,17 +14,60 @@ namespace Exam2Review
   public partial class Form1 : Form
   {
     List<WCMatch> matches = new List<WCMatch>();
+    Dictionary<WCMatch, string> dict = new Dictionary<WCMatch, string>();
+      Random rand = new Random();
     public Form1()
     {
       InitializeComponent();
 
       PopulateMatches();
       FilterTeamAWinners();
+      PopulateDictionary();
       //TESTING EQUALITY OVERRIDE
-      WCMatch A = new WCMatch("Brazil", "Netherlands", 0,0);
-      WCMatch B = new WCMatch("Japan","Brazil", 1,2);
+      WCMatch A = new WCMatch("Brazil", "Japan", 0, 0);
+      WCMatch B = new WCMatch("Japan", "Brazil", 1, 2);
       A.IsTeamAWinner();
       Console.WriteLine($"A == B: {A.Equals(B)}");
+    }
+
+    public void PopulateDictionary()
+    {
+      dict = matches.ToDictionary(match => match, match => match.Winner() );
+      while(dict.Count < 40)
+      {
+        WCMatch newMatch = new WCMatch(WorldCupData.GetRandomCountry(), WorldCupData.GetRandomCountry(), rand.Next(0,8), rand.Next(0,8));
+        if (!dict.ContainsKey(newMatch))
+        {
+          dict[newMatch] = newMatch.Winner();
+        }
+      }
+      foreach( KeyValuePair<WCMatch, string> kvp in dict)
+      {
+        Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
+      }
+
+      Dictionary<string, int> newDict = new Dictionary<string, int>();
+
+      foreach (WCMatch match in dict.Keys)
+      {
+        if (!newDict.ContainsKey(match.Winner()))
+        {
+          newDict[match.Winner()] = 0;
+        }
+        newDict[match.Winner()] += match.GoalDiff;
+      }
+
+      foreach (KeyValuePair<string, int> kvp in newDict)
+      {
+        Console.WriteLine($"{kvp.Key} - GD: {kvp.Value}");
+      }
+      Dictionary<string, int> orderedDict = newDict.OrderBy(kvp => kvp.Value).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+      Console.WriteLine("Ordered dict:");
+      foreach (KeyValuePair<string, int> kvp in orderedDict)
+      {
+        Console.WriteLine($"{kvp.Key} - GD: {kvp.Value}");
+      }
+
     }
 
     public void FilterTeamAWinners()
@@ -39,7 +82,6 @@ namespace Exam2Review
     public void PopulateMatches()
     {
       // Add 20 UNIQUE matches to our list
-      Random rand = new Random();
       for(int i = 0; i < 20; i++)
       {
         WCMatch newMatch = new WCMatch(WorldCupData.GetRandomCountry(), WorldCupData.GetRandomCountry(), rand.Next(0,8), rand.Next(0,8));

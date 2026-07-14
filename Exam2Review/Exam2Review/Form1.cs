@@ -23,6 +23,7 @@ namespace Exam2Review
       PopulateMatches();
       FilterTeamAWinners();
       PopulateDictionary();
+      HypotheticalQ();
       //TESTING EQUALITY OVERRIDE
       WCMatch A = new WCMatch("Brazil", "Japan", 0, 0);
       WCMatch B = new WCMatch("Japan", "Brazil", 1, 2);
@@ -48,6 +49,14 @@ namespace Exam2Review
 
       Dictionary<string, int> newDict = new Dictionary<string, int>();
 
+      IEnumerable<WCMatch> keys = dict.Keys;
+
+      // NO logical meaning. but notice how we can chain iEnumerable methods
+      foreach(WCMatch match in dict.Keys.Where(key => key.IsTeamAWinner()).Take(10).Distinct().Concat( dict.Keys.Skip(3)).Distinct()  ) 
+      {
+        string country = dict[match];
+      }
+      
       foreach (WCMatch match in dict.Keys)
       {
         if (!newDict.ContainsKey(match.Winner()))
@@ -68,6 +77,8 @@ namespace Exam2Review
         Console.WriteLine($"{kvp.Key} - GD: {kvp.Value}");
       }
 
+
+
     }
 
     public void FilterTeamAWinners()
@@ -77,6 +88,39 @@ namespace Exam2Review
       {
         Console.WriteLine($"{match}");
       }
+    }
+
+    public void HypoteticalQ()
+    {
+      Queue<WCMatch> queue = new Queue<WCMatch>();
+      LinkedList<WCMatch> linkedList = new LinkedList<WCMatch>();
+      
+      while(queue.Count < 10)
+      {
+        WCMatch newMatch = new WCMatch(WorldCupData.GetRandomCountry(), WorldCupData.GetRandomCountry(), rand.Next(0,8), rand.Next(0,8));
+        if (!queue.Contains(newMatch))
+          queue.Enqueue(newMatch);
+      }
+
+      while(linkedList.Count < 10)
+      {
+         WCMatch newMatch = new WCMatch(WorldCupData.GetRandomCountry(), WorldCupData.GetRandomCountry(), rand.Next(0,8), rand.Next(0,8));
+        if (!linkedList.Contains(newMatch))
+          linkedList.AddLast(newMatch);
+      }
+
+      foreach(WCMatch match in queue.Concat(linkedList).Where(match => match.scoreA > 3).Skip(2).Distinct())
+      {
+        
+      }
+
+      List<WCMatch> list2 = new List<WCMatch>();
+
+      IEnumerable<WCMatch> concat2 = list2.Concat(queue.Concat(linkedList).Where(match => match.scoreA > 3).Skip(2).Distinct());
+
+      List<WCMatch> list3 = queue.Concat(linkedList).Where(match => match.scoreA > 3).Skip(2).Distinct().ToList();
+      Dictionary<string, int> dict2 = queue.Concat(linkedList).Where(match => match.scoreA > 3).Skip(2).Distinct().OrderByDescending(match => match.GoalDiff).ToDictionary(match => match.Winner(), match => match.GoalDiff);
+      Dictionary<string, int> dict3 = dict2.OrderBy(kvp => kvp.Value).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
     }
 
     public void PopulateMatches()

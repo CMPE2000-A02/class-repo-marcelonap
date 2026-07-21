@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 namespace Exam2Review
 {
   internal class WCMatch
-  {
+   {
+
     public string CountryA { get; private set; }
     public string CountryB { get; private set; }
 
 
     public int scoreA { get; private set; }
     public int scoreB { get; private set; }
+
+    private int winningScore { get; set; }
 
 
     public int GoalDiff
@@ -27,6 +30,14 @@ namespace Exam2Review
       CountryB = B;
       this.scoreA = scoreA;
       this.scoreB = scoreB;
+    }
+
+    void foo(WCMatch match)
+    {
+      if (this.winningScore > match.winningScore)
+      {
+        
+      }
     }
 
     public override bool Equals(object obj)

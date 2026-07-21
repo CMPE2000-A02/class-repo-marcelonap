@@ -23,7 +23,7 @@ namespace Exam2Review
       PopulateMatches();
       FilterTeamAWinners();
       PopulateDictionary();
-      HypotheticalQ();
+      HypoteticalQ();
       //TESTING EQUALITY OVERRIDE
       WCMatch A = new WCMatch("Brazil", "Japan", 0, 0);
       WCMatch B = new WCMatch("Japan", "Brazil", 1, 2);
@@ -83,7 +83,7 @@ namespace Exam2Review
 
     public void FilterTeamAWinners()
     {
-      IEnumerable<WCMatch> teamAWinners = matches.Where(match => match.IsTeamAWinner()); 
+      IEnumerable<WCMatch> teamAWinners = matches.Where( (match) => match.IsTeamAWinner()); 
       foreach(WCMatch match in teamAWinners)
       {
         Console.WriteLine($"{match}");
@@ -94,12 +94,11 @@ namespace Exam2Review
     {
       Queue<WCMatch> queue = new Queue<WCMatch>();
       LinkedList<WCMatch> linkedList = new LinkedList<WCMatch>();
-      
+      int discardsQ = 0;
       while(queue.Count < 10)
       {
         WCMatch newMatch = new WCMatch(WorldCupData.GetRandomCountry(), WorldCupData.GetRandomCountry(), rand.Next(0,8), rand.Next(0,8));
-        if (!queue.Contains(newMatch))
-          queue.Enqueue(newMatch);
+        discardsQ += queue.EnqueueIfNew(newMatch) ? 0 : 1;
       }
 
       while(linkedList.Count < 10)

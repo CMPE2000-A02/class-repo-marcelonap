@@ -18,18 +18,72 @@ namespace Inheritance
       string word = "Hello World!";
 
       Dog german1 = new GermanShepherd("Peanut");
+      Dog lab1 = new Lab("Pinkie");
+      Dog heeler1 = new Heeler("Brian");
 
-     // GermanShepherd german1 = new GermanShepherd("peanut");
-      if( german1 is GermanShepherd)
-      { 
-        Console.WriteLine($"My name is {((GermanShepherd)german1).GetName()}");
-      }
-      for(int i = 3; i > 0; i--)
+      List<Dog> dogs = new List<Dog>();
+      dogs.Add(lab1);
+      dogs.Add(german1);
+      dogs.Add(heeler1);
+
+      
+      for (int i = 3; i > 0; i--)
       {
         german1.Birthday();
+        lab1.Birthday();
       }
-      Console.WriteLine($"I am {german1.GetAge()} years old");
-      Console.WriteLine($"My nose is {german1.NoseColor().ToString()} ");
+
+      Console.WriteLine($"Lab's nose: {lab1.NoseColor()}");
+      Console.WriteLine($"German's nose: {german1.NoseColor()}");
+
+
+      Console.WriteLine("------------- Age: ");
+      foreach (Dog dog in dogs)
+      {
+        Console.WriteLine($"{dog.GetName()}'s age: {dog.GetAge()}");
+        Console.WriteLine($"Nose color: {dog.NoseColor()}");
+
+        //if(dog is GermanShepherd german)
+        //{
+        //  Console.WriteLine($"{german.GetName()}'s age: {german.GetAge()}");
+        //} else if (dog is Lab lab){
+        //  Console.WriteLine($"{lab.GetName()}'s age: {lab.GetAge()}");
+        //} else if (dog is Heeler heeler)
+        //{
+        //  Console.WriteLine($"{heeler.GetName()}'s age: {heeler.GetAge()}");
+        //}
+      }
+
+      //Console.WriteLine($"German's age: {german1.GetAge()}");
+      //Console.WriteLine($"Lab's age: {lab1.GetAge()}");
+
+      //Console.WriteLine("------------- Age (using new): ");
+      //if( german1 is GermanShepherd german)
+      //{
+      //  Console.WriteLine($"German's age: {german.GetAge()}");
+      //}else if( german1 is Lab lab)
+      //{
+      //  Console.WriteLine($"German's age: {lab.GetAge()}");
+      //}
+
+      //if( lab1 is GermanShepherd germanCaptured)
+      //{
+      //  Console.WriteLine($"Lab's age: {germanCaptured.GetAge()}");
+      //}else if( lab1 is Lab lab)
+      //{
+      //  Console.WriteLine($"Lab's age: {lab.GetAge()}");
+      //}
+
+
+
+      //if (german1 is GermanShepherd)
+      //{
+      //  //Console.WriteLine($"My name is {german1.GetName()}");
+      //  Console.WriteLine($"My name is {((GermanShepherd)german1).GetName()}");
+      //}
+
+      //Console.WriteLine($"I am {german1.GetAge()} years old");
+      //Console.WriteLine($"My nose is {german1.NoseColor().ToString()} ");
     }
   }
 }

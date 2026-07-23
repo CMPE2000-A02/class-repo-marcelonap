@@ -10,9 +10,6 @@ using GDIDrawer;
 
 namespace Inheritance
 {
-  //internal class InheritanceClasses
-  //{
-  //}
   internal class Animal
   {
     protected int numTeeth { get; set; }
@@ -32,6 +29,11 @@ namespace Inheritance
     public void Birthday()
     {
       age++;
+    }
+    public string GetName()
+    {
+    //int i = base.age * age;
+      return name;
     }
 
 
@@ -60,12 +62,12 @@ namespace Inheritance
     {
       Birthday();
     }
-    public int GetAge()
+    virtual public int GetAge()
     {
       return age;
     }
 
-    virtual public System.Drawing.Color NoseColor()
+    virtual public Color NoseColor()
     {
       return RandColor.GetColor();
     }
@@ -83,6 +85,36 @@ namespace Inheritance
     }
   }
 
+  internal class Lab : Dog
+  {
+    public Lab(string name) : base(name) { }
+
+    public override Color NoseColor()
+    {
+      return Color.Gold;
+    }
+
+    override public int GetAge()
+    {
+      return 13;
+    }
+  }
+
+  internal class Heeler : Dog
+  {
+    public Heeler(string name) : base(name) { }
+    public override Color NoseColor()
+    {
+      return Color.Gray;
+    }
+
+    override public int GetAge()
+    {
+      return 2;
+    }
+
+  }
+
   internal class GermanShepherd : Dog
   {
     protected int age;
@@ -93,7 +125,7 @@ namespace Inheritance
 
     public string GetName()
     {
-    //  int i = base.age * age;
+    //int i = base.age * age;
       return name;
     }
 
@@ -102,7 +134,7 @@ namespace Inheritance
       return Color.Black;
     }
 
-    new public int GetAge()
+    override public int GetAge()
     {
       return base.GetAge() * 7;
       //return age * 7;

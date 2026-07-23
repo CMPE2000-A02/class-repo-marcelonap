@@ -10,7 +10,7 @@ using GDIDrawer;
 
 namespace Inheritance
 {
-  internal class Animal
+  internal abstract class Animal : IComparable
   {
     protected int numTeeth { get; set; }
     protected int age { get; set; }
@@ -26,6 +26,20 @@ namespace Inheritance
       age = 0;
     }
 
+    public abstract string HowDoIMove();
+
+    public virtual string HomePlanet()
+    {
+      return "Earth";
+    }
+
+   // public abstract int CompareTo(object o);
+    public int CompareTo(object obj)
+    {
+      if (!(obj is Animal animal)) throw new ArgumentException("Not an animal");
+
+      return animal.age.CompareTo(age);
+    }
     public void Birthday()
     {
       age++;
@@ -58,6 +72,17 @@ namespace Inheritance
       Console.WriteLine("Dog constructor");
     }
 
+    public override int CompareTo(object o)
+    {
+      if (!(o is Dog other)) throw new ArgumentException("Not a dog");
+      return name.CompareTo(other.name);
+    }
+
+    public override string HowDoIMove()
+    {
+      return "4 paws";
+    }
+
     public void CelebrateBirthday()
     {
       Birthday();
@@ -88,6 +113,11 @@ namespace Inheritance
   internal class Lab : Dog
   {
     public Lab(string name) : base(name) { }
+
+    public override int CompareTo(object o)
+    {
+      return base.CompareTo(o);
+    }
 
     public override Color NoseColor()
     {

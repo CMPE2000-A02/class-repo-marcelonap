@@ -42,6 +42,8 @@ namespace Inheritance
       {
         Console.WriteLine($"{dog.GetName()}'s age: {dog.GetAge()}");
         Console.WriteLine($"Nose color: {dog.NoseColor()}");
+        Console.WriteLine($"{dog.HomePlanet()}");
+        
 
         //if(dog is GermanShepherd german)
         //{

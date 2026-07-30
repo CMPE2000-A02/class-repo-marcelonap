@@ -32,14 +32,21 @@ namespace Inheritance
     {
       return "Earth";
     }
-
-   // public abstract int CompareTo(object o);
-    public int CompareTo(object obj)
+    #region NVI
+    public string GetWeight()
     {
-      if (!(obj is Animal animal)) throw new ArgumentException("Not an animal");
-
-      return animal.age.CompareTo(age);
+      return "My Weight is: " + CoreGetWeight();
     }
+
+    public abstract double CoreGetWeight();
+    #endregion
+    public abstract int CompareTo(object o);
+    //public int CompareTo(object obj)
+    //{
+    //  if (!(obj is Animal animal)) throw new ArgumentException("Not an animal");
+
+    //  return animal.age.CompareTo(age);
+    //}
     public void Birthday()
     {
       age++;
@@ -72,6 +79,12 @@ namespace Inheritance
       Console.WriteLine("Dog constructor");
     }
 
+   // public abstract double CoreGetWeight();
+    public override double CoreGetWeight()
+    {
+      throw new NotImplementedException();
+    }
+
     public override int CompareTo(object o)
     {
       if (!(o is Dog other)) throw new ArgumentException("Not a dog");
@@ -90,6 +103,11 @@ namespace Inheritance
     virtual public int GetAge()
     {
       return age;
+    }
+
+    public string BaseNoseColor()
+    {
+      return $"Nose Color: {NoseColor()}";
     }
 
     virtual public Color NoseColor()
@@ -113,6 +131,10 @@ namespace Inheritance
   internal class Lab : Dog
   {
     public Lab(string name) : base(name) { }
+    public override double CoreGetWeight()
+    {
+      return 30.0;
+    }
 
     public override int CompareTo(object o)
     {
@@ -138,6 +160,11 @@ namespace Inheritance
       return Color.Gray;
     }
 
+    public override double CoreGetWeight()
+    {
+      return 19.3;
+    }
+
     override public int GetAge()
     {
       return 2;
@@ -157,6 +184,16 @@ namespace Inheritance
     {
     //int i = base.age * age;
       return name;
+    }
+
+    public override double CoreGetWeight()
+    {
+      return 45.5;
+    }
+
+    public override string HomePlanet()
+    {
+      return "Heaven";
     }
 
     public override Color NoseColor()

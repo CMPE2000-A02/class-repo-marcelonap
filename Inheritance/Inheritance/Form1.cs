@@ -15,8 +15,18 @@ namespace Inheritance
     public Form1()
     {
       InitializeComponent();
-      string word = "Hello World!";
+      string word = "Pello World!";
+      string planters = "PLANTERS";
 
+      if ( planters.Contains(word.First()) )
+      {
+        Console.WriteLine("Found in PLANTERS");
+      }
+
+      //IComparable icomp = new IComparable();
+     // IEnumerable<int> ints = new IEnumerable<int>();
+      //Animal animal = new Animal();
+      Animal german2 = new GermanShepherd("Max");
       Dog german1 = new GermanShepherd("Peanut");
       Dog lab1 = new Lab("Pinkie");
       Dog heeler1 = new Heeler("Brian");
@@ -41,18 +51,27 @@ namespace Inheritance
       foreach (Dog dog in dogs)
       {
         Console.WriteLine($"{dog.GetName()}'s age: {dog.GetAge()}");
-        Console.WriteLine($"Nose color: {dog.NoseColor()}");
+        Console.WriteLine(dog.BaseNoseColor());
+        Console.WriteLine(dog.GetWeight());
         Console.WriteLine($"{dog.HomePlanet()}");
-        
 
-        //if(dog is GermanShepherd german)
+
+
+        //if (dog is GermanShepherd german)
         //{
         //  Console.WriteLine($"{german.GetName()}'s age: {german.GetAge()}");
-        //} else if (dog is Lab lab){
+        //}
+        //else if (dog is Lab lab)
+        //{
         //  Console.WriteLine($"{lab.GetName()}'s age: {lab.GetAge()}");
-        //} else if (dog is Heeler heeler)
+        //}
+        //else if (dog is Heeler heeler)
         //{
         //  Console.WriteLine($"{heeler.GetName()}'s age: {heeler.GetAge()}");
+        //}
+        //else if (dog is IComparable comparableDog)
+        //{
+        //  Console.WriteLine($"Found a Comparable Dog");
         //}
       }
 
